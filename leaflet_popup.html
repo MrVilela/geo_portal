@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PopUp</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
+  
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+  <script src="geojson/new_bairros.geojson"></script>
+
+
+
+</head>
+<body>
+
+  <div id="mapid" style="width: 100%;height: 100vh;">1</div>
+    
+</body>
+  <script type="text/javascript">
+
+    var map = new L.map("mapid").setView([-8.7530, -63.8792], 13)
+
+    var osm1 = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {}).addTo(map);
+
+    function popUpFeature(feature, layer) {
+      var popupText = "<b>Nome:</b>" + feature.properties.nome + "<br/><b>Lei de Criação:</b> " + feature.properties.lei_de_cri + "<br/><b>Lei de Alteração:</b> " + feature.properties.lei_de_alt + "<br/><b>Pop. Total:</b> " + feature.properties.pop_total +"<br/><b>Pop. Fem/Mas:</b> "+ feature.properties.popmulher + "<b>/</b>" + feature.properties.pophomem
+      layer.bindPopup(popupText)
+    };
+
+    var onEachFeature = function(feature, layer) {
+      popUpFeature(feature, layer);      
+    }
+
+    var bairros = L.geoJson(bairros,{
+      onEachFeature: onEachFeature,
+    }).addTo(map);
+
+  </script>
+</html>

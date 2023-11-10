@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Menu</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
+  <script src="geojson/new_bairros.geojson"></script>
+
+  <style>
+    .map {
+        height: 100dvh;
+        width: 100%;
+    }
+  </style>
+
+
+</head>
+<body>
+  <div id="mapid" class="map">1</div>
+
+      
+  <script>
+    var map = L.map('mapid').setView([-8.7530, -63.8792], 13);
+
+    var osm1 = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {}).addTo(map);
+    
+    map.doubleClickZoom.disable();
+
+    const bairros_layer = L.geoJson(bairros).addTo(map);
+    
+    function SetColor(x) {
+      return x >13000 ? 
+    }
+
+
+  </script>
+
+
+</body>
+</html>
